@@ -1,0 +1,2 @@
+module StockTestsHelper
+end

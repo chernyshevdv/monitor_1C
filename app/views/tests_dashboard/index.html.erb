@@ -1,0 +1,72 @@
+<h1>Центральная панель тестирования</h1>
+<h2>Тесты по типу метаданных</h2>
+<table class="table table-condensed">
+	<thead>
+		<th>Тип теста</th>
+		<th>Статус</th>
+		<th>Расхождения</th>
+	</thead>
+	<tbody>
+		<%
+			differences = 0
+			@articles_tests.each do |t|
+				differences += t.differences.count
+			end
+		 %>
+		 <tr class="<%= (differences > 0 ? 'error' : 'success') %>">
+		 	<td>Номенклатурный справочник</td>
+		 	<td><i class="<%= (differences > 0 ? 'icon-remove' : 'icon-ok') %>"></i></td>
+		 	<td><%= differences %></td>
+		 </tr>
+		 <%
+		 	differences = 0
+		 	documents = 0
+		 	@stock_tests.each do |t|
+		 		differences += t.differences.count
+		 		documents += t.documents.count
+		 	end
+		 %>
+		 <tr class="<%= (differences > 0 ? 'error' : 'success') %>">
+		 	<td><%= link_to 'Регистр товаров на складах', stock_tests_path %></td>
+		 	<td><i class="<%= (differences > 0 ? 'icon-remove' : 'icon-ok') %>"></i></td>
+		 	<td><%= "#{differences} (#{documents} документов)" %></td>
+		 </tr>
+		 <%
+		 	differences = 0
+		 	@lots_tests.each do |t|
+		 		differences += t.differences.count
+		 	end
+		 %>
+		 <tr class="<%= (differences > 0 ? 'error' : 'success') %>">
+		 	<td><%= link_to 'Регистр партий товаров на складах', lots_tests_path %></td>
+		 	<td><i class="<%= (differences > 0 ? 'icon-remove' : 'icon-ok') %>"></i></td>
+		 	<td><%= "#{differences}" %></td>
+		 </tr>
+	</tbody>
+	<tfoot>
+		<%
+		 	differences = 0
+		 	@all_tests.each do |t|
+		 		differences += t.differences.count
+		 	end
+		 %>
+		 <tr class="<%= (differences > 0 ? 'error' : 'success') %>">
+		 	<td><%= link_to 'ИТОГО', all_tests_path %></td>
+		 	<td><i class="<%= (differences > 0 ? 'icon-remove' : 'icon-ok') %>"></i></td>
+		 	<td><%= "#{differences}" %></td>
+		 </tr>
+	</tfoot>
+</table>
+
+<h2>Тесты по магазинам</h2>
+<table class="table table-condensed">
+	<thead>
+		<th>Магазин</th>
+		<th>Статус</th>
+		<th>Тестов</th>
+		<th>Расхождений</th>
+	</thead>
+	<tbody>
+		<%= render @stocks %>
+	</tbody>
+</table>

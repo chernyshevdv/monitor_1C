@@ -1,0 +1,28 @@
+<li><strong>
+	<% if !abstract_document.nil? %>
+		<%= "#{abstract_document.code} 
+		(#{abstract_document.tref.to_i}) 
+		от 
+		#{l abstract_document.postDate, format: :long}|" unless abstract_document.nil? %>
+		<%= link_to('Скрыть', abstract_document, method: :delete) %>
+		</strong>
+		<% if !abstract_document.stock_movements.empty? %>
+		<ul>
+			<% if abstract_document.possibleCauses.length >0 %>
+			<li>Возможные причины:
+				<ul>
+					<% abstract_document.possibleCauses.each do |cause| %>
+					<li class="text-error"><%= cause %></li>
+					<% end %>
+				</ul>
+			</li>
+			<% end %>
+			<li>Строки документа:
+			<ul>
+				<%= render abstract_document.stock_movements %>
+			</ul>
+			</li>
+		</ul>
+		<% end %>
+	<% end %>
+</li>

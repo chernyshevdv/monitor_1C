@@ -1,0 +1,8 @@
+<tr class="<%= (stock_test.differences.count == 0 ? 'success' : 'error') %>">
+	<td><%= stock_test.id %></td>
+	<td><%= link_to "Остатки #{stock_test.title}", stock_test %></td>
+	<td><%= l(stock_test.stamp, format: :long) %></td>
+	<td class="center"><i class="<%= (stock_test.differences.count == 0 ? 'icon-ok' : (stock_test.documents.count > 100 ? 'icon-fire' : 'icon-remove')) %>"></i></td>
+	<td class="right"><%= stock_test.documents.count %></td>
+	<td class="right"><%= stock_test.differences.count %></td>
+</tr>

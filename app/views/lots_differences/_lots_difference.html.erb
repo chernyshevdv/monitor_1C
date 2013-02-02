@@ -1,0 +1,7 @@
+<tr>
+	<td--</td>
+	<td><%= "#{lots_difference.article.code} #{lots_difference.article.title}" %></td>
+	<td class="right"><%= lots_difference.hq_q %></td>
+	<td class="right"><%= lots_difference.cmp_q %></td>
+	<td class="right"><%= (lots_difference.hq_q || 0) - (lots_difference.cmp_q || 0) %></td>
+</tr>

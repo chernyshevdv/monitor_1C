@@ -1,0 +1,7 @@
+<tr>
+	<td><%= stock_difference.stock.title %></td>
+	<td><%= "#{stock_difference.article.code} #{stock_difference.article.title}" %></td>
+	<td class="right"><%= stock_difference.HQ_Q %></td>
+	<td class="right"><%= stock_difference.CMP_Q %></td>
+	<td class="right"><%= stock_difference.HQ_Q - stock_difference.CMP_Q %></td>
+</tr>

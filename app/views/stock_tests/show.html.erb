@@ -1,0 +1,22 @@
+<h1><%= "Тест №#{@stock_test.id} от #{l @stock_test.stamp, format: :long} (#{@stock_test.title})" %> </h1>
+
+<h2>Документы со странностями (<%= "#{@stock_test.documents.count} документов" %>)</h2>
+<ul>
+	<%= render @stock_test.documents.all(limit: 100) %>
+</ul>
+
+<h2>Расхождения по остаткам (<%= "#{@stock_test.differences.count} строк" %>):</h2>
+<%= will_paginate @stock_test.differences.paginate(page: params[:page]) %>
+<table class="table table-condensed table-bordered">
+	<thead>
+		<th>Склад</th>
+		<th>Номенклатура</th>
+		<th>HQ</th>
+		<th>ЦМП</th>
+		<th>Дельта</th>
+	</thead>
+	<tbody>
+		<%= render @stock_test.differences.paginate(page: params[:page]) %>
+	</tbody>
+</table>
+	

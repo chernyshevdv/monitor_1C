@@ -1,0 +1,5 @@
+<li>
+	<%= "Регистратор №#{lot_movement.movementDoc.code} (#{lot_movement.movementDoc.rref_bin}) от #{l lot_movement.movementDoc.postDate, format: :long} "  unless lot_movement.movementDoc.nil? %>
+	<%= "| #{lot_movement.article.code} (#{lot_movement.article.rref_bin}) #{lot_movement.article.title} 
+	| #{lot_movement.hq_q} | #{lot_movement.cmp_q}" %>
+</li>

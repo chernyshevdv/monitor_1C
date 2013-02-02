@@ -1,0 +1,8 @@
+<tr class="<%= (articles_test.differences.count == 0 ? 'success' : 'error') %>">
+	<td><%= articles_test.id %></td>
+	<td><%= link_to "Номенклатура #{articles_test.title}", articles_test %></td>
+	<td><%= l articles_test.stamp, format: :long %></td>
+	<td class="center"><i class="<%= (articles_test.differences.count == 0 ? 'icon-ok' : 'icon-remove' ) %>"></i></td>
+	<td class="right">--</td>
+	<td class="right"><%= articles_test.differences.count %></td>
+</tr>

@@ -1,0 +1,15 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ru:
+  will_paginate:
+    previous_label: "&#8592; Пред."
+    next_label: "След. &#8594;"
+    page_gap: "&hellip;"
+  login:
+    password_not_set: "Ваш пароль не установлен. Обратитесь к менеджеру по снабжению по телефону 1055!"
+    wrong_password: 'Неверная пара "логин-пароль".'
+    empty_password: 'Ваш пароль пуст! Это очень нехорошо. Настройте свой пароль!'
+  time:
+    formats:
+      long: "%d.%m.%Y %H:%M"

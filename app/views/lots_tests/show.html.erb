@@ -1,0 +1,29 @@
+<h1><%= "Тест №#{@lots_test.id} от #{l @lots_test.stamp, format: :long} (#{@lots_test.title})" %> </h1>
+
+<h2>Партии со странностями (<%= "#{@lots_test.lots.count} партий" %>)</h2>
+<ul>
+	<% @lots_test.lots.all(limit:10).each do |lot| %>
+		<% movements = @lots_test.movements.where("acceptDocId=#{lot.rref_bin}") %>
+		<%= render lot %><%= "(#{movements.count} движений)" %>
+		<ul>
+		<% movements.all(limit: 50).each do |movement| %>
+			<%= render movement %>
+		<% end %>
+		</ul>
+
+	<% end %>
+</ul>
+
+<h2>Расхождения по остаткам (<%= "#{@lots_test.differences.count} строк" %>):</h2>
+<%= will_paginate @lots_test.differences.paginate(page: params[:page]) %>
+<table class="table table-condensed table-bordered">
+	<thead>
+		<th>Номенклатура</th>
+		<th>HQ</th>
+		<th>ЦМП</th>
+		<th>Дельта</th>
+	</thead>
+	<tbody>
+		<%= render @lots_test.differences.paginate(page: params[:page]) %>
+	</tbody>
+</table>

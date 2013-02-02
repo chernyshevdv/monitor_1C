@@ -1,0 +1,8 @@
+<tr class="<%= (lots_test.differences.count == 0 ? 'success' : 'error') %>">
+	<td><%= lots_test.id %></td>
+	<td><%= link_to "Партии #{lots_test.title}", lots_test %></td>
+	<td><%= l(lots_test.stamp, format: :long) %></td>
+	<td class="center"><i class="<%= (lots_test.differences.count == 0 ? 'icon-ok' : 'icon-remove') %>"></i></td>
+	<td class="right">--</td>
+	<td class="right"><%= lots_test.differences.count %></td>
+</tr>

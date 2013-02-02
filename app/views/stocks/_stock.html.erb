@@ -1,0 +1,6 @@
+<tr class="<%= (stock.tests.count > 0 ? (stock.tests_ok? ? 'success' : 'error') : 'warning') %>">
+	<td><%= link_to stock.title, stock %></td>
+	<td class="center"><i class="<%= (stock.tests.count > 0 ? (stock.tests_ok? ? 'icon-ok' : 'icon-remove') : 'icon-question-sign') %>"></i></td>
+	<td class="right"><%= stock.tests.count %></td>
+	<td class="right"><%= "#{stock.differences.count} (#{stock.documents.count} документов)" %></td>
+</tr>

@@ -1,0 +1,13 @@
+<h1><%= "Тест №#{@articles_test.id} от #{l @articles_test.stamp, format: :long} (#{@articles_test.title})" %> </h1>
+
+<h2>Проблемы с номенклатурой (<%= "#{@articles_test.differences.count} строк" %>):</h2>
+<%= will_paginate @articles_test.differences.paginate(page: params[:page]) %>
+<table class="table table-condensed">
+	<thead>
+		<th>Номенклатура</th>
+	</thead>
+	<tbody>
+		<%= render @articles_test.differences.paginate(page: params[:page]) %>
+	</tbody>
+</table>
+	
