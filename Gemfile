@@ -4,7 +4,6 @@ gem 'rails', '3.2.8'
 gem 'tiny_tds'
 gem 'activerecord-sqlserver-adapter'
 gem 'composite_primary_keys'
-gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass'
 gem 'will_paginate', '~> 3.0.0'
 gem 'bootstrap-will_paginate'
@@ -25,6 +24,7 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
