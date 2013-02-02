@@ -2,7 +2,7 @@
 
 <h2>Партии со странностями (<%= "#{@lots_test.lots.count} партий" %>)</h2>
 <ul>
-	<% @lots_test.lots.all(limit:10).each do |lot| %>
+	<% @lots_test.lots.all(limit:20).each do |lot| %>
 		<% movements = @lots_test.movements.where("acceptDocId=#{lot.rref_bin}") %>
 		<%= render lot %><%= "(#{movements.count} движений)" %>
 		<ul>
