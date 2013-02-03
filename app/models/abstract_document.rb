@@ -6,14 +6,22 @@ class AbstractDocument < ActiveRecord::Base
   
   has_many :stock_movements, foreign_key: '_RecorderRRef', primary_key: 'rref'
 
-  def code()
-    return "[nil]" if rref.nil? || rref.unpack('H*').join == '00000000000000000000000000000000'
-    return "[0x#{rref.unpack('H*').join}]" if tref.nil? || tref.unpack('H*').join == '00000000'
+  def rrefUnknown?()
+    ((rref.nil? || rref_bin == '00000000000000000000000000000000') ? true : false )
+  end
 
-    sql = "EXEC spGetDocumentCode_WithTRefAndRRef 0x#{tref.unpack('H*').join}, 0x#{rref.unpack('H*').join}, '#{db_name}'"
+  def trefUnknown?()
+    ((tref.nil? || tref_bin == '00000000') ? true : false)
+  end
+
+  def code()
+    return "[nil]" if rrefUnknown?
+    return "[#{rref_bin}]" if trefUnknown?
+
+    sql = "EXEC spGetDocumentCode_WithTRefAndRRef #{tref_bin}, #{rref_bin}, '#{db_name}'"
     docData = connection.select_one(sql)
     if docData.nil? || docData['_Number'].nil?
-      "[0x#{rref.unpack('H*').join}@#{db_name}]"
+      "[#{rref_bin}@#{db_name}]"
       # docData
     else
       docData['_Number']
@@ -21,15 +29,19 @@ class AbstractDocument < ActiveRecord::Base
   end
 
   def postDate()
-    return DateTime.new(0) if rref.nil? || tref.nil? || rref.unpack('H*').join == '00000000000000000000000000000000' || tref.unpack('H*').join == '00000000'
+    return DateTime.new(0) if rrefUnknown? || trefUnknown?
 
   	# Возвращает дату проведения документа. Вычитать 2000 лет нужно из-за смещения, с которым 1С хранит данные в MSSQL
-  	docData = connection.select_one("EXEC spGetDocumentCode_WithTRefAndRRef 0x#{tref.unpack('H*').join}, 0x#{rref.unpack('H*').join}, '#{db_name}'")
+  	docData = connection.select_one("EXEC spGetDocumentCode_WithTRefAndRRef #{tref_bin}, #{rref_bin}, '#{db_name}'")
     docData.nil? ? DateTime.new(0) : (docData['_Date_Time'].nil? ? DateTime.new(0) : docData['_Date_Time'] - 2000.years)
   end
 
   def rref_bin()
     "0x#{rref.unpack('H*').join}"
+  end
+
+  def tref_bin()
+    "0x#{tref.unpack('H*').join}"
   end
 
   def missingInHQ?()
