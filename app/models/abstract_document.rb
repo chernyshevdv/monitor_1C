@@ -60,21 +60,22 @@ class AbstractDocument < ActiveRecord::Base
     return true
   end
 
-  def hasNullsInHqArticles?()
+  def columnHasNullsInArticles(column)
     stock_movements.each do |mv|
-      return true if mv.article.nil? && (!mv.HQ_Q.nil?)
+      return true if mv.article.nil? && (!eval("#{column}.nil?"))
     end
 
     return false
+  end
+  
+  def hasNullsInHqArticles?()
+    return columnHasNullsInArticles("mv.HQ_Q")
   end
 
   def hasNullsInCmpArticles?()
-    stock_movements.each do |mv|
-      return true if mv.article.nil? && (!mv.CMP_Q.nil?)
-    end
-
-    return false
+    return columnHasNullsInArticles("mv.CMP_Q")
   end
+
 
   def possibleCauses()
     causes = []
