@@ -7,7 +7,7 @@ class Stock < ActiveRecord::Base
   has_many :differences, foreign_key: 'stock_id', class_name: 'StockDifference', primary_key: 'stockId'
   has_many :documents, through: :differences, uniq: true
 
-  has_many :tests, class_name: 'AbstractTest', primary_key: 'stockId'
+  has_many :tests, class_name: 'AbstractTest', primary_key: 'stockId', conditions: 'is_current=1'
 
   def title
   	cmpTitle
