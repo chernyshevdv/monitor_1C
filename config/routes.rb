@@ -15,6 +15,8 @@ Monitor1c::Application.routes.draw do
 
   end
 
+  resources :nullarticles_tests
+
   resources :all_tests
 
   resources :lots_tests

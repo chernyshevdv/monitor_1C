@@ -1,0 +1,8 @@
+<tr class="<%= (nullarticles_test.differences.count == 0 ? 'success' : 'error') %>">
+	<td><%= nullarticles_test.id %></td>
+	<td><%= link_to "Документы с null-номенклатурой #{nullarticles_test.title}",nullarticles_test %></td>
+	<td><%= l nullarticles_test.stamp, format: :long %></td>
+	<td class="center"><i class="<%= (nullarticles_test.differences.count == 0 ? 'icon-ok' : 'icon-remove' ) %>"></i></td>
+	<td class="right">--</td>
+	<td class="right"><%=nullarticles_test.differences.count %></td>
+</tr>

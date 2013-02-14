@@ -1,0 +1,14 @@
+<h1><%= "Тест №#{@nullarticles_test.id} от #{l @nullarticles_test.stamp, format: :long} (#{@nullarticles_test.title})" %> </h1>
+
+<h2>Документы с пустой номенклатурой (<%= "#{@nullarticles_test.differences.count} строк" %>):</h2>
+<%= will_paginate @nullarticles_test.differences.paginate(page: params[:page]) %>
+<table class="table table-condensed">
+	<thead>
+		<th>Документ</th>
+		<th>Строка</th>
+		<th>Кол-во</th>
+	</thead>
+	<tbody>
+		<%= render @nullarticles_test.differences.paginate(page: params[:page]) %>
+	</tbody>
+</table>
