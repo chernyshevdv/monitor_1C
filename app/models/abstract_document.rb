@@ -7,11 +7,11 @@ class AbstractDocument < ActiveRecord::Base
   has_many :stock_movements, foreign_key: '_RecorderRRef', primary_key: 'rref'
 
   def rrefUnknown?()
-    ((rref.nil? || rref_bin == '00000000000000000000000000000000') ? true : false )
+    ((rref.nil? || rref_bin == '0x00000000000000000000000000000000') ? true : false )
   end
 
   def trefUnknown?()
-    ((tref.nil? || tref_bin == '00000000') ? true : false)
+    ((tref.nil? || tref_bin == '0x00000000') ? true : false)
   end
 
   def code()
