@@ -12,3 +12,4 @@
 		<%= render @nullarticles_test.differences.paginate(page: params[:page]) %>
 	</tbody>
 </table>
+<%= will_paginate @nullarticles_test.differences.paginate(page: params[:page]) %>
