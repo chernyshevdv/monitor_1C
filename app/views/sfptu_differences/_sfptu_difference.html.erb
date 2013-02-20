@@ -1,12 +1,12 @@
 <tr>
-	<td><%= "С/Ф #{sfptu_difference.sfDoc.code} от #{l sfptu_difference.sfDoc.postDate, format: :short}" %></td>
+	<td><%= "#{sfptu_difference.sfDoc.code} от #{l sfptu_difference.sfDoc.postDate, format: :short}" %></td>
 	<% if !sfptu_difference.ptuDoc.nil? %>
-		<td><%= "ПТУ #{sfptu_difference.ptuDoc.code} от #{l sfptu_difference.ptuDoc.postDate, format: :short}" %></td>
+		<td><%= "#{sfptu_difference.ptuDoc.code} от #{l sfptu_difference.ptuDoc.postDate, format: :short}" %></td>
 	<% else %>
 		<td>Пустое ПТУ</td>
 	<% end %>
-	<td><%= "#{sfptu_difference.sfAmount}" %></td>
-	<td><%= "#{sfptu_difference.ptuAmount}" %></td>
+	<td><%= "#{number_to_currency sfptu_difference.sfAmount}" %></td>
+	<td><%= "#{number_to_currency sfptu_difference.ptuAmount}" %></td>
 	<% 
 		diff = (sfptu_difference.sfAmount - sfptu_difference.ptuAmount).abs
 		result = diff*100/sfptu_difference.sfAmount
@@ -16,6 +16,6 @@
 			perc = number_to_percentage( result.abs, precision: 0)
 		end
 	%>
-	<td> <%= "#{diff} руб (#{perc})" %> </td>
+	<td> <%= "#{number_to_currency diff}" %> </td>
 	<td><%= "#{sfptu_difference.gbDoc}" %></td>
 </tr>
