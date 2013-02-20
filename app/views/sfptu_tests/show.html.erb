@@ -1,0 +1,18 @@
+<h1><%= "Тест №#{@sfptu_test.id} от #{l @sfptu_test.stamp, format: :long}" %> </h1>
+
+<h2>Расхождения между счетами-фактурами и ПТУ (<%= "#{@sfptu_test.differences.count} строк" %>):</h2>
+<%= will_paginate @sfptu_test.differences.paginate(page: params[:page]) %>
+<table class="table table-condensed">
+	<thead>
+		<th>Счет-фактура</th>
+		<th>ПТУ</th>
+		<th>Сумма СФ</th>
+		<th>Сумма ПТУ</th>
+		<th>Разница</th>
+		<th>Документ ГБ</th>
+	</thead>
+	<tbody>
+		<%= render @sfptu_test.differences.paginate(page: params[:page]) %>
+	</tbody>
+</table>
+<%= will_paginate @sfptu_test.differences.paginate(page: params[:page]) %>

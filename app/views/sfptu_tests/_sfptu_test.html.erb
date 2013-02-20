@@ -1,0 +1,8 @@
+<tr class="<%= (sfptu_test.differences.count == 0 ? 'success' : 'error') %>">
+	<td><%= sfptu_test.id %></td>
+	<td><%= link_to "СФ-ПТУ #{sfptu_test.title}", sfptu_test %></td>
+	<td><%= l(sfptu_test.stamp, format: :long) %></td>
+	<td class="center"><i class="<%= (sfptu_test.differences.count == 0 ? 'icon-ok' : 'icon-remove') %>"></i></td>
+	<td class="right">--</td>
+	<td class="right"><%= sfptu_test.differences.count %></td>
+</tr>

@@ -21,6 +21,7 @@ Monitor1c::Application.routes.draw do
 
   resources :lots_tests
   resources :articles_tests
+  resources :sfptu_tests
 
   resources :abstract_documents
   resources :stocks

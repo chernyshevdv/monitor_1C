@@ -1,0 +1,21 @@
+<tr>
+	<td><%= "С/Ф #{sfptu_difference.sfDoc.code} от #{l sfptu_difference.sfDoc.postDate, format: :short}" %></td>
+	<% if !sfptu_difference.ptuDoc.nil? %>
+		<td><%= "ПТУ #{sfptu_difference.ptuDoc.code} от #{l sfptu_difference.ptuDoc.postDate, format: :short}" %></td>
+	<% else %>
+		<td>Пустое ПТУ</td>
+	<% end %>
+	<td><%= "#{sfptu_difference.sfAmount}" %></td>
+	<td><%= "#{sfptu_difference.ptuAmount}" %></td>
+	<% 
+		diff = (sfptu_difference.sfAmount - sfptu_difference.ptuAmount).abs
+		result = diff*100/sfptu_difference.sfAmount
+		if sfptu_difference.sfAmount == 0 || sfptu_difference.ptuAmount == 0
+			perc = "ошибка"
+		else
+			perc = number_to_percentage( result.abs, precision: 0)
+		end
+	%>
+	<td> <%= "#{diff} руб (#{perc})" %> </td>
+	<td><%= "#{sfptu_difference.gbDoc}" %></td>
+</tr>
