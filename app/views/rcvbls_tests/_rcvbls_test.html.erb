@@ -1,0 +1,8 @@
+<tr class="<%= (rcvbls_test.differences.count == 0 ? 'success' : 'error') %>">
+	<td><%= rcvbls_test.id %></td>
+	<td><%= link_to "Взаиморасчеты #{rcvbls_test.title}",rcvbls_test %></td>
+	<td><%= l rcvbls_test.stamp, format: :long %></td>
+	<td class="center"><i class="<%= (rcvbls_test.differences.count == 0 ? 'icon-ok' : 'icon-remove' ) %>"></i></td>
+	<td class="right">--</td>
+	<td class="right"><%=rcvbls_test.differences.count %></td>
+</tr>

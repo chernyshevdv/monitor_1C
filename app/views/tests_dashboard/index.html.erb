@@ -53,6 +53,17 @@
 		 	<td><i class="<%= (differences > 0 ? 'icon-remove' : 'icon-ok') %>"></i></td>
 		 	<td><%= "#{differences}" %></td>
 		 </tr>
+		 <%
+		 	differences = 0
+		 	@rcvbls_tests.each do |t|
+		 		differences += t.differences.count
+		 	end
+		 %>
+		 <tr class="<%= (differences > 0 ? 'error' : 'success') %>">
+		 	<td><%= link_to 'Взаиморасчеты ', rcvbls_tests_path %></td>
+		 	<td><i class="<%= (differences > 0 ? 'icon-remove' : 'icon-ok') %>"></i></td>
+		 	<td><%= "#{differences}" %></td>
+		 </tr>
 	</tbody>
 	<tfoot>
 		<%
@@ -79,5 +90,18 @@
 	</thead>
 	<tbody>
 		<%= render @stocks %>
+	</tbody>
+</table>
+
+<h2>Тесты по организациям</h2>
+<table class="table table-condensed">
+	<thead>
+		<th>Организация</th>
+		<th>Статус</th>
+		<th>Тестов</th>
+		<th>Расхождений</th>
+	</thead>
+	<tbody>
+		<%= render @organizations %>
 	</tbody>
 </table>

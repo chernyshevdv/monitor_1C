@@ -1,0 +1,6 @@
+<tr class="<%= (organization.tests.count > 0 ? (organization.tests_ok? ? 'success' : 'error') : 'warning') %>">
+	<td><%= link_to organization.title, organization %></td>
+	<td class="center"><i class="<%= (organization.tests.count > 0 ? (organization.tests_ok? ? 'icon-ok' : 'icon-remove') : 'icon-question-sign') %>"></i></td>
+	<td class="right"><%= organization.tests.count %></td>
+	<td class="right"><%= "#{organization.differences.count}" %></td>
+</tr>

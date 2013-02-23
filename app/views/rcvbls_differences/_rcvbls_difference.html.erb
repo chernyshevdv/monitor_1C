@@ -1,0 +1,27 @@
+<tr>
+	<td>
+		<%= if rcvbls_difference.contractor.nil? 
+				"--"
+			else
+				"#{rcvbls_difference.contractor.code} #{rcvbls_difference.contractor.title}" 
+			end
+		%>
+	</td>
+	<td>
+		<%= if rcvbls_difference.contract.nil?
+				"--"
+			else
+				"#{rcvbls_difference.contract.code} #{rcvbls_difference.contract.title}" 
+			end 
+		%>
+	</td>
+	<td>
+		<%= "#{rcvbls_difference.document.code} от #{l rcvbls_difference.document.postDate, format: :long}" %>
+	</td>
+	<td class="right">
+		<%= "#{rcvbls_difference.amount_hq.nil? ? '--' : rcvbls_difference.amount_hq}" %>
+	</td>
+	<td class="right">
+		<%= "#{rcvbls_difference.amount_cmp.nil? ? '--' : rcvbls_difference.amount_cmp }" %>
+	</td>
+</tr>

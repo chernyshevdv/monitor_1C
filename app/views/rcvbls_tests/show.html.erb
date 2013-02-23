@@ -1,0 +1,17 @@
+<h1><%= "Тест №#{@rcvbls_test.id} от #{l @rcvbls_test.stamp, format: :long} (#{@rcvbls_test.title})" %> </h1>
+
+<h2>Подозрительные движения (<%= "#{@rcvbls_test.differences.count} строк" %>):</h2>
+<%= will_paginate @rcvbls_test.differences.paginate(page: params[:page]) %>
+<table class="table table-condensed">
+	<thead>
+		<th>Контрагент</th>
+		<th>Договор</th>
+		<th>Документ-движение</th>
+		<th>ЦО</th>
+		<th>ЦМП</th>
+	</thead>
+	<tbody>
+		<%= render @rcvbls_test.differences.paginate(page: params[:page]) %>
+	</tbody>
+</table>
+<%= will_paginate @rcvbls_test.differences.paginate(page: params[:page]) %>
